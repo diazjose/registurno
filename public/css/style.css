@@ -1,0 +1,33 @@
+
+html, body {
+    background-color: #F4F1F1;
+    color: #636b6f;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 200;
+    height: 100vh;
+    margin: 0;
+}
+
+header {
+	/*
+	background-color: #BF1102;
+	*/
+	background-color: #FF0000;
+    font-family: 'Patua One', cursive;
+}
+
+
+nav{
+    background-color: #FF0000;
+    font-family: 'Patua One', cursive;
+}
+
+
+@media (max-width: 600px) {
+    #title {
+        font-size: 0.7em;
+    }
+    .logo{
+        width: 200px;  
+    }
+}  

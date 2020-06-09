@@ -1,0 +1,202 @@
+@extends('layouts.app1')
+
+@section('content')
+<div class="container" id="contenedor">
+    <div class="row justify-content-center">
+        <div class="col">
+            <div class="card">
+                <div class="card-header bg-primary text-white"><h3><strong><i class="fas fa-users"></i> Usuarios</strong></h3></div>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-5 my-3">
+                            <h4><strong>Listado de Usuarios</strong></h4>
+                        </div>
+                        <div class="col-md-5"></div>
+                        <div class="col-md-2 my-3">
+                          <a href="{{route('user.nuevo')}}" class="btn btn-success btn-sm-block">
+                            <i class="fas fa-user-plus"></i> <strong>Usuario Nuevo</strong> 
+                          </a>
+                        </div>    
+                    </div>
+                    @if(session('message'))
+                    <div class="alert alert-{{ session('status') }}">
+                        <strong>{{ session('message') }}</strong>   
+                    </div>  
+                    @endif 
+                    <div class="table-responsive" id="resultado">
+                        <table class="table">
+                            <thead class="thead-light">
+                                <th>Nombre</th>
+                                <th>Oficina</th>
+                                <th>Tramite</th>
+                                <th>Acciones</th>
+                            </thead>
+                            <tbody id="tbody">
+                                @foreach($users as $user)
+                                <tr>
+                                    <td>{{$user->surname}} {{$user->name}}</td>
+                                    @if($user->oficina_id == 0)
+                                    <td>TODAS</td>
+                                    @else
+                                    <td>{{$user->oficina->denominacion}}</td>
+                                    @endif
+                                    @if($user->tramite_id == 0)
+                                    <td>TODOS</td>
+                                    @else
+                                    <td>{{$user->tramite->denominacion}}</td>
+                                    @endif
+                                    <td>
+                                        <a href="#" class="btn btn-outline-primary" onclick="edit('{{$user->id}}','{{$user->name}}','{{$user->surname}}','{{$user->role}}','{{$user->email}}')" data-toggle="modal" data-target="#editModal" title="Editar Usuario" ><i class="fas fa-edit"></i></a>
+                                        <a href="{{route('user.view',[$user->id])}}" class="btn btn-outline-secondary" title="Configuracion"><i class="fas fa-cog"></i></a>
+                                            
+                                        <a href="#" class="btn btn-outline-danger" onclick="Borrar({{$user->id}},'{{$user->name}}','{{$user->surname}}')" data-toggle="modal" data-target="#confirm" title="Eliminar Usuario"><i class="fas fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div style="display: none">
+                <form action="" method="POST" id="form-search">
+                    @csrf
+                    <input type="text" name="buscar" value="" id="form_buscar" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="editModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+                              
+            <!-- Modal Header -->
+            <div class="modal-header bg-secondary text-white">
+                <h4 class="modal-title"><strong>Actualizar Oficina</strong></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+                                
+            <!-- Modal body -->
+            <div class="modal-body my-3">
+                <form method="POST" action="#">
+                    @csrf
+                        <input type="hidden" name="user_id" id="user_id" value="">
+                        <div class="form-group row">
+                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" style="text-transform:uppercase;" required autocomplete="name" autofocus>
+
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('Apellidos') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="surname" type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ old('surname') }}" style="text-transform:uppercase;" required autocomplete="surname" autofocus>
+
+                                @error('surname')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo Electronico') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Tipo') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="role" class="form-control @error('role') is-invalid @enderror" name="role" value="{{ old('role') }}" required autocomplete="role" autofocus>
+                                    <option value="Secretaria">Secretaria</option>
+                                    <option value="Director">Director</option>
+                                    <option value="Mesa">Mesa de Entrada</option>
+                                    <option value="Sección">Sección</option>
+                                    <option value="Dpto._SA">Dpto. SA</option>
+                                    <option value="Dpto._Asesoría">Dpto. Asesoría</option>
+                                    <option value="Dpto._Contable">Dpto. Contable</option>
+                                    <option value="Legales">Legales</option>
+                                    <option value="Dpto._Civiles">Dpto. Civiles</option>
+                                </select>
+
+                                @error('role')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Editar') }}
+                                </button>
+                            </div>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<!--Confirm-->
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="confirm">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">¿Estas seguro de realizar esta accion?</strong>?</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" data-toggle="modal" data-target="#confirm-si">Si</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="confirm-si">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">¿Desea eliminar a <strong><span id="nombre"></span></strong>?</strong>?</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <form method="POST" action="">
+          @csrf
+          <input type="hidden" name="id" id="user" value="">
+          <input type="hidden" name="nombre" id="user_name" value="">
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-danger">Si</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+@endsection
+@section('script')
+    <script src="{{ asset('js/users.js') }}"></script>
+@endsection
