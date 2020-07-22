@@ -18,13 +18,15 @@ class UsuariosController extends Controller
     }
 
      public function index(){
+        $oficinas = Oficina::orderBy('denominacion')->get();
     	$users = User::orderBy('oficina_id','ASC')->orderBy('tramite_id', 'ASC')->get();
-    	return view('usuarios.index', ['users' => $users]);
+    	return view('usuarios.index', ['users' => $users, 'oficinas' => $oficinas]);
     }
 
-    public function new(){
+    public function edit($id){
+        $user = User::find($id);
         $oficinas = Oficina::orderBy('denominacion')->get();
-    	return view('usuarios.new', ['oficinas' => $oficinas]);
+    	return view('usuarios.new', ['user' => $user, 'oficinas' => $oficinas]);
     }
 
     public function create(Request $request){
@@ -54,8 +56,8 @@ class UsuariosController extends Controller
     	
 		$user->save();
 
-    	return redirect()->route('user.index');
-                         //->with(['message' => 'Usuario cargado correctamente', 'status' => 'success']);
+    	return redirect()->route('user.index')
+                         ->with(['message' => 'Usuario cargado correctamente', 'status' => 'success']);
 
     }
 

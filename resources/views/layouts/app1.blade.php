@@ -3,8 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/logo.jpeg') }}" />
 
-        <title>Registro Civil</title>
+        <title>DGPJ - Turnos</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -23,17 +24,17 @@
     </head>
     <body>
         <div class="container-fluid my-2">
-            <nav class="navbar navbar-expand-md navbar-light bg-primary" style="font-family: 'Patua One', cursive;">
+            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="font-family: 'Patua One', cursive;">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
                         <!--
                         <img src="{{asset('images/logo_gobierno_horizontal.png')}}" id="title-img"  width="200px;" style="background-color: #FF0000;">
                         <h4 class="text-white text-center" style="background-color: #FF0000;" id="sub">Secretaría de Justicia</h4>
                     -->
-                      <img src="{{asset('images/secretaria_justicia.png')}}" id="title-img"  width="250px;" style="background-color: #FF0000;">
+                      <img src="{{asset('images/secretaria_justicia.png')}}" id="title-img"  width="250px;">
                     </a>
                     <div class="text-center">
-                        <h1 class="display-4 mx-md-3 text-white" id="title-head" style="font-family: 'Bebas Neue', cursive;"> Registro Civil</h1>
+                        <h1 class="display-4 mx-md-3 text-white" id="title-head" style="font-family: 'Bebas Neue', cursive;"> DGPJ - Turnos</h1>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
@@ -115,7 +116,7 @@
                 </div>
             </nav>
 
-            <div class="container my-5">
+            <div class="container-fluid my-5">
                 @yield('content')
             </div>
             @yield('script')

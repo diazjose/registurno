@@ -1,16 +1,16 @@
 @extends('layouts.app1')
 
 @section('content')
-<div class="container my-5">
+<div class="container-fluid my-5">
     <div class="row justify-content-center my-5" >
-        <div class="col-md-12">
+        <div class="">
             <div class="card border border-primary">
                 <div class="card-header bg-primary text-white">
                     <h3><strong>Oficinas</strong></h3>
                  </div>
 
                 <div class="card-body justify-content-center row">                    
-                    <div class="col-md-4 border-right border-primary">
+                    <div class="col-md-3 border-right border-primary">
                         <h4 class="my-3"><strong>Agregar Oficina</strong></h4><hr class="border border-primary">
                         
                         <form action="{{route('oficina.create')}}" method="POST">
@@ -57,7 +57,7 @@
                         @endif
                         @if(count($oficinas))
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table text-center">
                                 <thead>
                                     <th>Denominación</th>
                                     <th>Dirección</th>
@@ -67,10 +67,10 @@
                                 <tbody>
                                     @foreach($oficinas as $oficina)
                                     <tr>
-                                        <td>{{$oficina->denominacion}}</td>
-                                        <td>{{$oficina->direccion}}</td>
-                                        <td>{{$oficina->telefono}}</td>
-                                        <td>
+                                        <td class="col-3">{{$oficina->denominacion}}</td>
+                                        <td class="col-4">{{$oficina->direccion}}</td>
+                                        <td class="col-2">{{$oficina->telefono}}</td>
+                                        <td class="col-3">
                                             <a href="#" class="btn btn-outline-primary" onclick="edit('{{$oficina->id}}','{{$oficina->denominacion}}','{{$oficina->direccion}}','{{$oficina->telefono}}')" data-toggle="modal" data-target="#editModal" title="Editar Usuario"  ><i class="fas fa-edit"></i></a>
                                             <a href="{{route('config.index',[$oficina->id])}}" class="btn btn-outline-secondary" title="Configuracion"><i class="fas fa-cog"></i></a>
                                             <a href="#" class="btn btn-outline-danger" onclick="Borrar({{$oficina->id}},'{{$oficina->denominacion}}')" data-toggle="modal" data-target="#confirm" title="Eliminar"><i class="fas fa-trash-alt"></i></a>

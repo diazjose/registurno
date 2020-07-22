@@ -33,6 +33,7 @@
                                     <th>Turno</th>
                                     <th>Orden</th>
                                     <th>Tipo</th>
+                                    <th>Ente</th>
                                     <th>Hora</th>
                                     <th>Estado</th>
                                 </thead>
@@ -42,6 +43,7 @@
                                         <td class="turno">{{$turno->dni}}</td>
                                         <td class="orden">{{$turno->orden}}°</td>
                                         <td>{{$turno->tramite->denominacion}}</td>
+                                        <td>{{$turno->ente}}</td>
                                         <td class="hora">{{$turno->hora}}</td>
                                         <td class="estado">
                                             @switch($turno->estado)
@@ -70,6 +72,7 @@
                                         <th>Turno</th>
                                         <th>Orden</th>
                                         <th>Tipo</th>
+                                        <th>Ente</th>
                                         <th>Hora</th>
                                         <th>Estado</th>
                                     </thead>
@@ -79,6 +82,7 @@
                                             <td class="turno">{{$turno->dni}}</td>
                                             <td class="orden">{{$turno->orden}}°</td>
                                             <td>{{$turno->tramite->denominacion}}</td>
+                                            <td>{{$turno->ente}}</td>
                                             <td class="hora">{{$turno->hora}}</td>
                                             <td class="estado">
                                                 @switch($turno->estado)

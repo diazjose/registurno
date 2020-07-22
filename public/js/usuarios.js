@@ -1,6 +1,7 @@
 window.addEventListener("load", function(){
 	 $("#oficina").change(function(){
 		var buscar = $(this).val();
+		console.log(buscar);
 		var form = $("#form-search");
 		var url = form.attr('action');
 		$("#id").val(buscar);
@@ -17,3 +18,5 @@ window.addEventListener("load", function(){
 		$("#tipo").show();
 	});
 });
+
+
