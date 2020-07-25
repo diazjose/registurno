@@ -1,17 +1,17 @@
 @extends('layouts.app1')
 
 @section('content')
-<div class="container my-5">
+<div class="container-fluid my-5">
     <div class="row justify-content-center my-5" >
         <div class="col-md-12">
-            <div class="card border border-primary">
-                <div class="card-header bg-primary text-white">
+            <div class="card border">
+                <div class="card-header grey text-white">
                     <h3><strong>Cofigurar Oficina {{$oficina->denominacion}}</strong></h3>
                  </div>
                  
                 <div class="card-body justify-content-center row">                    
-                    <div class="col-md-4 border-right border-primary">
-                        <h4 class="my-3"><strong>Agregar Tramite</strong></h4><hr class="border border-primary">
+                    <div class="col-md-4 border-right border-danger">
+                        <h4 class="my-3"><strong>Agregar Tramite</strong></h4><hr class="border border-danger">
                         
                         <form action="{{route('config.create')}}" method="POST">
                             @csrf
@@ -43,7 +43,7 @@
                                 <input id="min_turno" type="number" class="form-control" name="min_turno" value="{{ old('min_turno') }}" required>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block"><h5><strong><i class="fas fa-plus"></i> Añadir Tramite</strong></h5></button>
+                                <button type="submit" class="btn btn-outline-primary btn-block"><h5><strong><i class="fas fa-plus"></i> Añadir Tramite</strong></h5></button>
                             </div>
                         </form>  
 

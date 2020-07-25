@@ -52,27 +52,38 @@
                             @enderror
                         </div>
 
-                         <div class="form-group">
-                                <label for="oficina" class="col-form-label text-md-right" >
-                                    <strong>{{ __('Oficina:') }}</strong>
-                                </label>
-                                <select name="oficina" class="oficina" class="form-control" >
-                                    <option value="0">TODOS</option>
-                                    @foreach($oficinas as $o)   
-                                    <option value="{{$o->id}}">{{$o->denominacion}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                        <div class="form-group">
+                            <label for="role" class="col-form-label text-md-right">
+                                <strong>{{ __('Rol:') }}</strong>
+                            </label>
+                            <select name="role" id="role" class="form-control">
+                                <option value="ADMIN">Administrador</option>
+                                <option value="USER">Usuario Turnero</option>
+                            </select>
+                        </div>
 
-                            <div class="form-group" class="tipo" style="display: none;">
-                                <label for="tramite" class="col-form-label text-md-right" >
-                                    <strong>{{ __('Tramite:') }}</strong>
-                                </label>
-                                <select name="tramite" id="tramite" class="form-control" >
-                                    <option value="0">TODOS</option>
-                                </select>
-                            </div>
+                        <div class="form-group">
+                            <label for="oficina" class="col-form-label text-md-right" >
+                                <strong>{{ __('Oficina:') }}</strong>
+                            </label>
+                            <select name="oficina" id="oficina" class="form-control" >
+                                <option value="0">TODOS</option>
+                                @foreach($oficinas as $o)   
+                                <option value="{{$o->id}}">{{$o->denominacion}}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
+                        <div class="form-group" id="tipo" style="display: none;">
+                            <label for="tramite" class="col-form-label text-md-right" >
+                                <strong>{{ __('Tramite:') }}</strong>
+                            </label>
+                            <select name="tramite" id="tramite" class="form-control">
+                                <option value="0">TODOS</option>
+                            </select>
+                        </div>
+
+                        
                         <div class="form-group">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-9">
-                <h1 class="text-center title"><strong>Autoridades</strong></h1>
+                <h1 class="text-center title">Autoridades</h1>
                 <div class="row">
                     <div class="col-md-6 my-2">
                         <div class="border border-danger row mx-2 aut">
@@ -28,7 +28,7 @@
                 <br>
                 <div class="container text-center my-2">
                     
-                    <h1 class="title"><strong>Misión</strong></h1>
+                    <h1 class="title">Misión</h1>
                     <div class="aut border border-danger">
                         <h3 class="text-secondary mx-2 my-3">
                             <strong>La Dirección General Personas Jurídicas</strong> (DGPJ La Rioja), dependiente de Secretaría de Justicia de la Provincia de La Rioja, tiene como misión principal el control de la legalidad, registración y fiscalización de la vida institucional de entidades civiles y comerciales, promoviendo así el fortalecimiento del principio de seguridad jurídica y resguardando el interés público.
@@ -38,8 +38,8 @@
                 <br>
                 <div class="d-block d-sm-block d-md-none">
                     <div class="my-3">
-                        <h2 class="title text-center"><strong>Contacto</strong></h2>
-                        <div class="align-self-center my-3 list-group-item-secondary text-center">
+                        <h2 class="title text-center">Contacto</h2>
+                        <div class="align-self-center my-3 grey text-center">
                             <ul class="social-network social-circle">
                                 <li><a href="https://www.facebook.com/SecretariaDeJusticiaLaRioja/" target="_block" class="icoFacebook" title="Facebook"><i class="fab fa-facebook"></i></a></li>
                                 <li><a href="https://www.instagram.com/secjusticia_lr/" class="icoInstegram" title="Instegram" target="_block"><i class="fab fa-instagram"></i></a></li>
@@ -59,7 +59,7 @@
                 </div>
                 <hr class="border border-danger">
                 <div class="my-2">
-                    <h1 class="text-center title"><strong>Comunicado</strong></h1>
+                    <h1 class="text-center title">Comunicado</h1>
                     <h4 class="text-secondary">
                          <strong>DGPJ</strong> informa al público en gral. que durante el período de emergencia sanitaria pone a disposición del mismo a fin de canalizar sus consultas por personal especialmente designado a tal fin las siguientes Teléfonos: 3804355420 | 3804801420 | 3804126468.
                     </h4>
@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <div class="my-3">
-                    <h2 class="my-2 title"><strong>¿Como Solicitar Turno?</strong></h2>
+                    <h2 class="my-2 title">¿Como Solicitar Turno?</h2>
                     <br>
                     <ul class="list-group text-secondary">
                         <li class="list-group-item border">
@@ -84,7 +84,7 @@
                     </ul>
                     <div class="my-3 d-block d-sm-block d-md-none" id="turno-solicitud">
                         <hr class="border border-danger">
-                        <h2 class="my-2 title"><strong>Solicitar Turno</strong></h2>    
+                        <h2 class="my-2 title">Solicitar Turno</h2>    
                         <div class="card border border-danger my-4">
                             <div class="card-header bg-danger">
                                 <h3 class="text-white"><i class="far fa-calendar-alt"></i> Turnos Online</h3>
@@ -103,7 +103,7 @@
                     
                     <div class="row my-2">
                         <div class="col-md-4 align-self-center">
-                            <h1 class="title my-2"><strong>Noticias</strong></h1>
+                            <h1 class="title my-2">Noticias</h1>
                             <h3 class="text-secondary"><strong>¿Necesitás regularizar tu Organización Barrial?</strong></h3>
                             <h3 class="text-secondary">
                                 Accedé al <strong>Programa Punto Cero</strong> a través de la Dirección de Personas Jurídicas y regulariza tu situación Legal/Contable/Impositiva sin costo.
@@ -117,10 +117,10 @@
                 <hr class="border border-danger">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                   <li class="nav-item">
-                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><h2 class="my-3 title"><strong>Asociaciones Civiles</strong></h2></a>
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><h2 class="my-3 title">Asociaciones Civiles</h2></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><h2 class="my-3 title"><strong>Requisitos</strong></h2></a>
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><h2 class="my-3 title">Requisitos</h2></a>
                   </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
@@ -137,8 +137,8 @@
             </div>
             <div class="col-md-3 d-none d-sm-none d-md-block">
                 <div class="my-3">
-                    <h3 class="title"><strong>Contacto</strong></h3>
-                    <div class="align-self-center my-3 list-group-item-secondary text-center">
+                    <h3 class="title">Contacto</h3>
+                    <div class="align-self-center my-3 grey text-center">
                         <ul class="social-network social-circle">
                             <li><a href="https://www.facebook.com/SecretariaDeJusticiaLaRioja/" target="_block" class="icoFacebook" title="Facebook"><i class="fab fa-facebook"></i></a></li>
                             <li><a href="https://www.instagram.com/secjusticia_lr/" class="icoInstegram" title="Instegram" target="_block"><i class="fab fa-instagram"></i></a></li>
@@ -168,6 +168,10 @@
                             <a href="{{route('turno.index')}}" id="btn-turno" class="btn btn-outline-danger btn-block"><h4><strong>Solicitar Turno</strong></h4></a>
                         </div>
                     </div>
+                </div>
+                <hr class="border border-danger">
+                <div class="text-center">
+                    <img src="{{asset('images/logo_gob/bicentenario.png')}}">
                 </div>
             </div>
         </div>

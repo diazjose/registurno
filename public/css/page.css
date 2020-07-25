@@ -1,27 +1,87 @@
+
+@font-face {
+    font-family: Antenna;
+    font-style: normal;
+    src: url('../font-gob/antenna/ANTENNACOND-BOLD.OTF') 
+}
+
+@font-face {
+    font-family: Antenna-regular;
+    font-style: normal;
+    src: url('../font-gob/antenna/ANTENNACOND-REGULAR.TTF') 
+}
+
+@font-face {
+    font-family: Antenna-bold;
+    font-style: normal;
+    src: url('../font-gob/antenna/ANTENNACOND-BOLD.OTF') 
+}
+
+@font-face {
+    font-family: Antenna-body;
+    font-style: normal;
+    src: url('../font-gob/antenna/ford-antenna-italic-588ce13ac85a5.otf') 
+}
+
+@font-face {
+    font-family: Changa-regular;
+    font-style: normal;
+    src: url('../font-gob/ChangaOne/ChangaOne-Regular.ttf') 
+}
+
+@font-face {
+    font-family: Changa-italic;
+    font-style: normal;
+    src: url('../font-gob/ChangaOne/ChangaOne-Italic.ttf') 
+}
+
+@font-face {
+    font-family: Gotham-bold;
+    font-style: normal;
+    src: url('../font-gob/Gotham-Font/Gotham-Bold.otf') 
+}
+
+nav{
+  font-family: Gotham-bold;
+}
+
+
 body {
   /*
 	background-color: #FFE7E2;
   */
   background-color: #FFFFFF;
+  font-family: Antenna-regular;
 }
 header {
   /*
 	background-color: #BF1102;
 	*/
-  background-color: #f01f33;
+  background-color: #ea1b36;
   color: white;
-  margin-top:5px;
+  /*margin-top:5px;*/
   margin-right: 10px;
   margin-left: 10px; 
 }
 
+#title-img{
+  width: 35vw;
+}
+
+#img-sec{
+  width: 25vw; 
+}
 
 #logo{
-	width: 20vw;
+	width: 100vw;
 }
 
 #logo-footer{
   width: 20vw;
+}
+
+#late-footer{
+  width: 15vw;
 }
 
 #title{
@@ -36,12 +96,17 @@ header {
 	font-size: 3.5vw;
 }
 
-.title-head{
-  font-size: 5vw; 
+#title-head{
+  font-family: 'Bebas Neue', cursive;
+  font-size: 4vw; 
 }
 
 .title{
-  font-family: 'Archivo Narrow', sans-serif;
+  font-family: Gotham-bold;
+}
+
+.text-secondary{
+  color: #808080 !important;
 }
 
 .login-form{
@@ -54,8 +119,16 @@ header {
 	font-size: 2vw;
 }
 
+#header-logo{
+  width: 100%;
+}
+
 #ptocero {
   width: 32vw;
+}
+
+.grey{
+  background-color: #808080;
 }
 
 .links > a {
@@ -73,7 +146,7 @@ header {
 	height: 50px;
   
   background-color: #FFE7E2 !important;*/
-  background-color: #f01f33 !important;
+  background-color: #ea1b36 !important;
 }
 #observacion{
   height: 40px;
@@ -87,9 +160,10 @@ header {
 .boton:hover {
   margin-top: 2px;
   background-color: #ff5279;
-  border-radius: 15px;
+  
   border: solid 2px;
   /*
+  border-radius: 15px;
   border-color: #585454;
   */
   border-color: #ffffff;
@@ -134,7 +208,7 @@ footer {
   
   background-color: #BF1102;
   */
-  background-color: #f01f33;
+  background-color: #ea1b36;
   /*
   background: -webkit-linear-gradient(59deg, #DC8471, #BF1102);
   background: linear-gradient(59deg, #BF1102, #DC8471);
@@ -268,6 +342,10 @@ li {
   display:none;
 }
 
+.h5{
+    font-size: 0.6em; 
+  }
+
 iframe {
     width: 100%;
     height: 400px;
@@ -286,7 +364,11 @@ iframe {
   }
 
   h5{
-    font-size: 1em;
+    font-size: 0.6em;
+  }
+
+  .h5 {
+    font-size: 0.6em;
   }
 
   #fotosecre {
@@ -319,7 +401,14 @@ iframe {
   }
 
   h5{
-    font-size: 0.9em;
+    font-size: 0.7em;
+  }
+  .h5 {
+    font-size: 0.7em;
+  }
+
+  #title-head{
+    font-size: 2.1em; 
   }
 
   #fotosecre {
@@ -355,6 +444,9 @@ iframe {
     font-size: 0.9em;
   }
 
+  #title-head{
+    font-size: 0.9em;
+  }
   .autoridad{
     font-size: 1.0em;
   }
@@ -377,6 +469,14 @@ iframe {
     font-size: 1.8em;
   }
 
+  h6{
+    font-size: 1em;
+  }
+
+  #title-head{
+    font-size: 2.1em; 
+  }
+
   .autoridad{
     font-size: 1.0em;
   }
@@ -394,8 +494,8 @@ iframe {
 }
 
 @media (max-width: 600px) {
-  .bg-white {
-    background-color: #f01f33 !important;
+  #title-img{
+    width: 260px;
   }
 
   .nav-link{
@@ -414,8 +514,12 @@ iframe {
     font-size: 1.4em;
   }
 
-  .title-head{
-    font-size: 3.5em; 
+  #img-sec{
+    width: 90vw;
+  }
+
+  #title-head{
+    font-size: 2.1em; 
   }
 
   #sub {
@@ -460,8 +564,12 @@ iframe {
     font-size: 1.8em;
   }
 
+  h6{
+    font-size: 1.8em;
+  }
+
   .h5{
-    font-size: 1.1em; 
+    font-size: 1.3em; 
   }
   .card-body h5{
     font-size: 1.5em;

@@ -45,6 +45,16 @@ window.addEventListener("load", function(){
 		$(location).attr('href',url);
 	});
 
+	$("#btn-false").click(function(){
+		$("#turno-solicitud").hide();
+		$('#spinner').show();
+		setTimeout(function(){
+			$('#spinner').hide();
+			$("#msg-error").html('<h4 class="text-danger"><strong>¡¡ Lo sentimos, la pagina ésta en mantenimiento en este momento !! <i class="far fa-sad-tear"></i></strong><p>Intente  más tarde por favor.</p></h4>');
+			$("#msg-error").show();
+		}, 2000);	
+	});	
+
 	$("#btn").click(function(){
 		
 		var vdni = $("#dni").val();

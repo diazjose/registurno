@@ -3,9 +3,9 @@
 @section('content')
 <div class="container-fliud">
     <div class="row justify-content-center">
-        <div class="col">
-            <div class="card">
-                <div class="card-header bg-primary">
+        <div class="col-md-10">
+            <div class="card border-danger">
+                <div class="card-header grey border-buton border-danger">
                     <h3 class="text-white"><strong>Turnos - @if($fecha != '') {{date('d/m/Y', strtotime($fecha))}} @else {{date('d/m/Y')}} @endif</strong></h3>
                  </div>
 
@@ -22,18 +22,19 @@
                             </div>
                         </form>    
                     </div>
-                    <hr>
-                    <div class="row">
+                    <hr class="border border-danger">
+                    
+                    <!--<div class="row">-->
                         @if($viene == 1 )
                         @foreach($oficina as $ofi)
-                        <div class="col-md-6">
-                            <h4>{{$ofi->denominacion}}</h4>
+                        <div class="text-center">
+                            <h4 class="title text-center">{{$ofi->denominacion}}</h4>
                             <table class="table">
                                 <thead>
                                     <th>Turno</th>
                                     <th>Orden</th>
                                     <th>Tipo</th>
-                                    <th>Ente</th>
+                                    <th>Entidad</th>
                                     <th>Hora</th>
                                     <th>Estado</th>
                                 </thead>
@@ -103,7 +104,7 @@
                                 </table>
                             </div>
                         @endif                    
-                    </div>                   
+                    <!--</div>-->                   
                     <div style="display: none;">
                         <form action="{{route('turno.status')}}" id="form-turno" method="POST">
                             @csrf

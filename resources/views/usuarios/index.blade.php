@@ -5,11 +5,11 @@
     <div class="row justify-content-center">
         <div class="col">
             <div class="card">
-                <div class="card-header bg-primary text-white"><h3><strong><i class="fas fa-users"></i> Usuarios</strong></h3></div>
+                <div class="card-header grey text-white"><h3><strong><i class="fas fa-users"></i> Usuarios</strong></h3></div>
 
                 <div class="card-body justify-content-center row">
-                    <div class="col-md-3 border-right border-primary">
-                        <h4 class="my-3"><strong>Agregar Usuario</strong></h4><hr class="border border-primary">
+                    <div class="col-md-4 border-right border-danger">
+                        <h4 class="my-3"><strong>Agregar Usuario</strong></h4><hr class="border border-danger">
                         
                         <form method="POST" action="{{ route('user.create') }}">
                             @csrf
@@ -102,13 +102,13 @@
                             </div>
 
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block">
+                                <button type="submit" class="btn btn-outline-primary btn-block">
                                     <strong>{{ __('Registrar') }}</strong>
                                 </button>
                             </div>
                         </form>  
                     </div>
-                    <div class="col my-3">
+                    <div class="col-md-8 my-3">
                         
                         <h4><strong>Listado de Usuarios</strong></h4>
                         @if(session('message'))

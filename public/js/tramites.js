@@ -11,7 +11,7 @@ function edit(id,name){
 function Borrar(id,name){
 
 	$("#nombre").text(name);
-	$("#id").val(id);
+	$("#id_delete").val(id);
 	$("#name").val(name);
 }
 

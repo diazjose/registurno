@@ -4,14 +4,14 @@
 <div class="container my-5">
     <div class="row justify-content-center my-5" >
         <div class="col-md-10">
-            <div class="card border border-primary">
-                <div class="card-header bg-primary text-white">
+            <div class="card border border-danger">
+                <div class="card-header grey text-white border-buton border-danger">
                     <h3><strong>Tramites</strong></h3>
                  </div>
 
                 <div class="card-body justify-content-center row">                    
-                    <div class="col-md-4 border-right border-primary">
-                        <h4 class="my-3"><strong>Agregar Tramite</strong></h4><hr class="border border-primary">
+                    <div class="col-md-4 border-right border-danger">
+                        <h4 class="my-3"><strong>Agregar Tramite</strong></h4><hr class="border border-danger">
                         
                         <form action="{{route('tramite.create')}}" method="POST">
                             @csrf
@@ -25,7 +25,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary btn-block"><h5><strong><i class="fas fa-plus"></i> Agregar Tramite</strong></h5></button>
+                                <button type="submit" class="btn btn-outline-primary btn-block"><h5><strong><i class="fas fa-plus"></i> Agregar Tramite</strong></h5></button>
                             </div>
                         </form>  
 
@@ -122,7 +122,7 @@
       </div>
       <form method="POST" action="{{route('tramite.delete')}}">
           @csrf
-          <input type="hidden" name="id" id="id" value="">
+          <input type="hidden" name="id" id="id_delete" value="">
           <input type="hidden" name="tramite" id="name" value="">
           <div class="modal-footer">
             <button type="submit" class="btn btn-danger">Si</button>

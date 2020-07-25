@@ -58,5 +58,9 @@ Route::post('/turno/searchTurno', 'TurnosController@searchTurno')->name('turno.s
 Route::get('/turno/todos/{fecha?}', 'TurnosController@view')->name('turno.view')->middleware('auth');
 Route::post('/turno/estado', 'TurnosController@status')->name('turno.status')->middleware('auth');
 
+/*PAGE*/
+Route::get('/seguir-legajo', 'TurnosController@seguimiento')->name('seg.index');
+
+
 /*REPORTES*/
 Route::get('/turno/download/{id}/{fecha}', 'PdfController@turno')->name('turno');

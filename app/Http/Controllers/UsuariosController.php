@@ -61,6 +61,34 @@ class UsuariosController extends Controller
 
     }
 
+    
+
+    public function update(Request $request){
+
+        $id = $request->input('user_id');
+        $user = User::find($id);
+
+        $validate = $this->validate($request, [
+                'name' => ['required', 'string', 'max:255'],
+                'surname' => ['required', 'string', 'max:255'],
+                'role' => ['required', 'string', 'max:255'],
+            ]);
+
+
+        $user->name = strtoupper($request->input('name'));
+        $user->surname = strtoupper($request->input('surname'));
+        $user->email = $request->input('email');
+        $user->role = $request->input('role');
+        $user->oficina_id = $request->input('oficina');
+        $user->tramite_id = $request->input('tramite');
+        
+        $user->save();
+
+        return redirect()->route('user.index')
+                         ->with(['message' => 'Usuario cargado correctamente', 'status' => 'success']);
+
+    }
+
     public function view($id){
 
     	$user = User::find($id);

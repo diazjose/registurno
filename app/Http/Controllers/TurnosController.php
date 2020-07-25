@@ -383,6 +383,12 @@ class TurnosController extends Controller
         }
         
     }
+
+    /*----------------PAGE-----------------*/
+
+    public function seguimiento(){
+        return view('seguimiento.index');   
+    }
 }
 
 /*

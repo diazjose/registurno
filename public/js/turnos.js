@@ -41,7 +41,7 @@ window.addEventListener("load", function(){
 
 	$("#fechaTurno").click(function(){
 		var fecha = $("#fecha").val();		
-		var url = 'http://localhost/sisgturn/public/turno/todos/'+fecha;
+		var url = 'http://localhost/sisturnos/public/turno/todos/'+fecha;
 		$(location).attr('href',url);
 	});
 

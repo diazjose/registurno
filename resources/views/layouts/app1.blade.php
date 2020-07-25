@@ -19,22 +19,17 @@
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/style1.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/page.css') }}" rel="stylesheet">
         
     </head>
     <body>
-        <div class="container-fluid my-2">
-            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="font-family: 'Patua One', cursive;">
-                <div class="container">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="font-family: 'Patua One', cursive;">
+                <div class="container-fluid">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <!--
-                        <img src="{{asset('images/logo_gobierno_horizontal.png')}}" id="title-img"  width="200px;" style="background-color: #FF0000;">
-                        <h4 class="text-white text-center" style="background-color: #FF0000;" id="sub">Secretaría de Justicia</h4>
-                    -->
-                      <img src="{{asset('images/secretaria_justicia.png')}}" id="title-img"  width="250px;">
+                      <img src="{{asset('images/logo_gob/SECJUS - PJ.png')}}" id="img-sec">
                     </a>
-                    <div class="text-center">
-                        <h1 class="display-4 mx-md-3 text-white" id="title-head" style="font-family: 'Bebas Neue', cursive;"> DGPJ - Turnos</h1>
+                    <div class="">
+                        <h1 class="mx-3 text-white" id="title-head"> Turnos Online</h1>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
@@ -94,10 +89,10 @@
                                 @endswitch
                                 
                                 <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        <strong>{{ Auth::user()->name }} {{ Auth::user()->surname }}</strong> <span class="caret"></span>
+                                    
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle text-white h5" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::user()->name }} {{ Auth::user()->surname }}<span class="caret"></span>
                                     </a>
-
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
@@ -116,11 +111,11 @@
                 </div>
             </nav>
 
+        <div class="container-fluid my-2">
             <div class="container-fluid my-5">
                 @yield('content')
             </div>
             @yield('script')
-            
         </div>
     </body>        
 </html>    
