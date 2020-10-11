@@ -16,18 +16,20 @@ class ConfigController extends Controller
 
     public function index($id){
     	$oficina = Oficina::find($id);
-        $tramites = Tramite::orderBy('denominacion')->get();
+        $tramites = Tramite::where('estado', 'Habilitado')->orderBy('denominacion')->get();
     	return view('ConfigOficina.index', ['oficina' => $oficina,'tramites' => $tramites]);
     }
 
     public function create(Request $request){
-    	$validate = $this->validate($request, [
+        
+        $validate = $this->validate($request, [
                 'tramite_id' => ['required', 'int','max:255'],
             ],
             [
                 'tramite_id' => 'Debe seleccionar un tramite',
             ]);
-
+        $case = $request->input('case');
+       
         $oficina = $request->input('oficina_id');
     	$tramite = $request->input('tramite_id');
 
@@ -39,6 +41,13 @@ class ConfigController extends Controller
     		$config = new Config;
 	    	$config->oficina_id = $oficina;
 	    	$config->tramite_id = $tramite;
+            $dias = '';
+            for ($i=1; $i < 6; $i++) { 
+                if (isset($case[$i])) {  
+                    $dias = $dias.$case[$i];
+                }
+            }
+            $config->dias = $dias;
 	    	$config->hora_inicio = $request->input('hora_inicio');
 	    	$config->hora_fin = $request->input('hora_fin');
 	    	$config->min_turno = $request->input('min_turno');

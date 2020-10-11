@@ -4,14 +4,14 @@
 <div class="container-fluid my-5">
     <div class="row justify-content-center my-5" >
         <div class="col-md-12">
-            <div class="card border border-danger">
-                <div class="card-header grey text-white border-buton border-danger">
+            <div class="card border border-secondary">
+                <div class="card-header grey text-white border-buton border-secondary title">
                     <h3><strong>Oficinas</strong></h3>
                  </div>
 
                 <div class="card-body justify-content-center row">                    
                     <div class="col-md-4 border-right border-danger">
-                        <h4 class="my-3"><strong>Agregar Oficina</strong></h4><hr class="border border-danger">
+                        <h4 class="my-3 title"><strong>Agregar Oficina</strong></h4><hr class="border-red">
                         
                         <form action="{{route('oficina.create')}}" method="POST">
                             @csrf
@@ -43,13 +43,15 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-outline-primary btn-block"><h5><strong><i class="fas fa-plus"></i> Agregar Oficina</strong></h5></button>
+                                <button type="submit" class="btn btn-outline-primary btn-block title"><h5><strong><i class="fas fa-plus"></i> Agregar Oficina</strong></h5></button>
                             </div>
                         </form>  
 
                     </div>
 
-                    <div class="col-md-8">
+                    <div class="col-md-8 my-3">
+                        <h4 class="title"><strong>Listado de Oficinas</strong></h4>
+                        <hr class="border-red">
                         @if(session('message'))
                             <div class="alert alert-{{ session('status') }}">
                                 <strong>{{ session('message') }}</strong>

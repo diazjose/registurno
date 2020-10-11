@@ -26,53 +26,65 @@
                 </div>
                 
                 <div class="col-md-5 my-3" id="turno-solicitud">
-                    <div class="card border border-danger">
-                        <div class="card-header bg-danger">
-                            <h3 class="card-title"><strong class="text-white"><i class="far fa-calendar-alt"></i> Solicitar Turno</strong></h3>
+                    <div class="card border-red">
+                        <div class="card-header color-red">
+                            <h3 class="card-title"><strong class="text-white title"><i class="far fa-calendar-alt"></i> Solicitar Turno</strong></h3>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body grey-turno">
                             <form id="form-turno">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" name="dni" class="form-control border border-dark" id="dni" placeholder="Introduzca su DNI" size="10"  maxlength="8" pattern="[0-9]{8}" title="Debe poner DNI números" required />
+                                    <input type="text" name="dni" class="form-control form-control-lg border-dark" id="dni" placeholder="Introduzca su DNI" size="10"  maxlength="8" pattern="[0-9]{8}" title="Debe poner DNI números" required />
+                                    <!--
                                     <small id="dnilHelp" class="form-text text-dark">Ingresé DNI tecleando numero por numero sin puntos, ni comas, ni otros caracteres que nos sean numeros</small>
+                                    -->
                                     <div class="alert-danger my-2" style="display: none;" id="mess">
                                         <strong class="mx-3">* DNI no valido</strong>
                                     </div>
                                 </div>  
                                 <div class="form-group">
-                                    <input type="text" name="ente" class="form-control border border-dark" id="ente" placeholder="Denominación del Ente que representa" size="10" onkeypress="return alpha(event)" required/>
-                                    <small id="dnilHelp" class="form-text text-dark">Ingresé Denominación del Ente que representa</small>
-                                    <div class="alert-danger my-2" style="display: none;" id="mess">
-                                        <strong class="mx-3">* DNI no valido</strong>
+                                    <input type="text" name="telefono" class="form-control form-control-lg border-dark" id="telefono" placeholder="Ingresé teléfono de contacto" size="10" maxlength="10" pattern="[0-9]{10}" required/>
+                                    <!--
+                                    <small id="dnilHelp" class="form-text text-dark">Ingresé teléfono del representante</small>
+                                    <div class="alert-danger my-2" style="display: none;" id="tel">
+                                        <strong class="mx-3">* El formato de teléfono es incorrecto</strong>
                                     </div>
+                                    -->
+                                </div> 
+                                <div class="form-group">
+                                    <input type="text" name="ente" class="form-control form-control-lg border-dark" id="ente" placeholder="Denominación de la Entidad que representa" size="10" onkeypress="return alpha(event)" required/>
+                                    <!--
+                                    <small id="dnilHelp" class="form-text text-dark">Ingresé Denominación de la Entidad que representa</small>
+                                    -->
                                 </div>                           
                                 <div class="form-group">
-                                    <select class="form-control border border-dark" name="tramite" id="tramite">
+                                    <select class="form-control form-control-lg border-dark" name="tramite" id="tramite">
                                         <option selected disabled>--Seleccionar Trámite--</option>
                                         @foreach($tramites as $tramite)
                                         <option value="{{$tramite->id}}">{{$tramite->denominacion}}</option>
                                         @endforeach
                                     </select>
+                                    <!--
                                     <small id="emailHelp" class="form-text text-dark">Selecciona Trámite.</small>
+                                    -->
                                 </div>
-                                <a href="#" id="btn-false" class="btn btn-danger border border-dark"><strong>Solicitar</strong></a>
-                                <!--<a href="#" id="btn" class="btn btn-danger border border-dark"><strong>Solicitar</strong></a>-->
+                                <!--<a href="#" id="btn-false" class="btn btn-danger border border-dark"><strong>Solicitar</strong></a>btn-outline-secondary-->
+                                <a href="#" id="btn" class="btn btn-red btn-lg btn-block title"><strong>Solicitar Turno</strong></a>
                             </form>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6 text-center align-self-center" id="spinner" style="display: none;">
+                <div class="col-md-5 text-center align-self-center" id="spinner" style="display: none;">
                     <div class="spinner-border text-danger" role="status">
                       <span class="sr-only">Loading...</span>
                     </div>  
                 </div>
-                <div class="col-md-6 text-center align-self-center" id="msg-error">
+                <div class="col-md-5 text-center align-self-center" id="msg-error" style="display: none;">
                     
                 </div>
 
-                <div class="col-md-6  my-2" style="display: none;" id="turno">
+                <div class="col-md-5  my-2" style="display: none;" id="turno">
                     <div class="alert" id="alert" role="alert">
                         <h4><i class="fas fa-calendar-check"></i> <strong id="title-alert"></strong></h4>
                     </div>
@@ -127,7 +139,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header bg-danger">
+      <div class="modal-header color-red">
         <h5 class="modal-title text-white" id="exampleModalLabel"><strong>Mensaje</strong></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -137,7 +149,7 @@
             <h5 id="message"></h5>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>

@@ -29,11 +29,16 @@ class PdfController extends Controller
     	return $pdf->stream();
     	//return $pdf->download('primer.pdf');
     }
+    
     public function turno($id, $fecha){
         $turno = Turno::find($id);
 
         $pdf = PDF::loadView('PDF/turnoPDF', compact(['turno']));
         return $pdf->stream();
         //return $pdf->download('primer.pdf');
+    }
+
+    public function viewTurnos($fecha){
+        $turnos = Turno::where('fecha', $fecha)->get();
     }
 }

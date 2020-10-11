@@ -47,7 +47,7 @@
                             @guest
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="{{ url('/') }}">
-                                    <h5><i class="fas fa-home"></i> Inicio</h5>
+                                    <h5 class="h5"><i class="fas fa-home"></i> Inicio</h5>
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -60,29 +60,29 @@
                                     @case('ADMIN')
                                         <li class="nav-item">
                                             <a class="nav-link text-white" href="{{ route('oficina.index') }}">
-                                                <h5><i class="far fa-building"></i> Oficinas</h5>
+                                                <h5 class="h5"><i class="far fa-building"></i> Oficinas</h5>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link text-white" href="{{ route('tramite.index') }}">
-                                                <h5><i class="fas fa-folder-minus"></i> Tramites</h5>
+                                                <h5 class="h5"><i class="fas fa-folder-minus"></i> Tramites</h5>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link text-white" href="{{ route('turno.view') }}">
-                                                <h5><i class="far fa-calendar-alt"></i> Turnos</h5>
+                                                <h5 class="h5"><i class="far fa-calendar-alt"></i> Turnos</h5>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link text-white" href="{{ route('user.index') }}">
-                                                <h5><i class="fas fa-users"></i> Usuarios</h5>
+                                                <h5 class="h5"><i class="fas fa-users"></i> Usuarios</h5>
                                             </a>
                                         </li>
                                         @break
                                     @case('USER')
                                         <li class="nav-item">
                                             <a class="nav-link text-white" href="{{ route('turno.view') }}">
-                                                <h5><i class="far fa-calendar-alt"></i> Turnos</h5>
+                                                <h5 class="h5"><i class="far fa-calendar-alt"></i> Turnos</h5>
                                             </a>
                                         </li>
                                         @break    

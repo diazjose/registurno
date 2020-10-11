@@ -8,15 +8,15 @@
                 <h3><strong>¡¡ Ahora puedes seguir el estado de tu expediente !! <i class="far fa-smile-wink"></i> <i class="fas fa-thumbs-up"></i></strong></h3>
                 <h3>Una vez iniciado tu expediente, se te entregará el número del mismo con el cual podras consultar su estado sin necesidad de acercarte a las oficinas.</h3>
             </div>
-            <hr class="border border-danger my-5">
+            <hr class="border-red my-5">
             <div class="container">
                 <label><strong>N° de Expediente o N° de Formulario</strong></label>
                 <div class="row">
                     <div class="col-md-4">
-                        <input id="buscar_form" type="text" class="form-control border-dark" style="text-transform:uppercase;" placeholder="N° de Expediente o N° de Formulario"><br>
+                        <input id="buscar_form" type="text" class="form-control form-control-lg border-dark" style="text-transform:uppercase;" placeholder="N° de Expediente o N° de Formulario"><br>
                     </div>
                     <div class="col-md-3">
-                        <button class="btn btn-outline-dark btn-sm-block" id="btn-from" >
+                        <button class="btn-red border-red btn-lg" id="btn-from" >
                             <i class="fas fa-search"></i> <strong>Buscar</strong> 
                         </button>
                     </div>
@@ -50,19 +50,19 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>S.A.</td>
+                                <td>MESA DE ENTRADA</td>
                                 <td>12/12/2019</td>
                                 <td>15/12/2019</td>
                                 <td class="text-success text-center"><h4><i class="fas fa-check"></i></h4></td>
                             </tr>
                             <tr>
-                                <td>MESA</td>
+                                <td>DPTO. S.A.</td>
                                 <td>28/12/2019</td>
                                 <td>10/01/2020</td>
                                 <td class="text-danger text-center"><h4><i class="fas fa-times"></i></h4></td>
                             </tr>
                             <tr>
-                                <td>CONTABLE</td>
+                                <td>DPTO. CONTABLE</td>
                                 <td>15/12/2019</td>
                                 <td><strong class="text-secondary">En Revisión...</strong></td>
                                 <td class="text-warning">
@@ -77,7 +77,7 @@
                     </table>
                 </div>
             </div>
-            <hr class="border border-danger my-5">
+            <hr class="border-red my-5">
         </div>          
         <div style="display: none;">
             <form action="#" id="form-search" method="POST">

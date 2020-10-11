@@ -4,14 +4,14 @@
 <div class="container-fluid my-5">
     <div class="row justify-content-center my-5" >
         <div class="col-md-12">
-            <div class="card border">
-                <div class="card-header grey text-white">
-                    <h3><strong>Cofigurar Oficina {{$oficina->denominacion}}</strong></h3>
+            <div class="card border-secondary">
+                <div class="card-header grey text-white title">
+                    <h3><strong>Cofigurar Oficina "{{$oficina->denominacion}}"</strong></h3>
                  </div>
                  
                 <div class="card-body justify-content-center row">                    
                     <div class="col-md-4 border-right border-danger">
-                        <h4 class="my-3"><strong>Agregar Tramite</strong></h4><hr class="border border-danger">
+                        <h4 class="my-3 title"><strong>Agregar Tramite</strong></h4><hr class="border-red">
                         
                         <form action="{{route('config.create')}}" method="POST">
                             @csrf
@@ -31,25 +31,54 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label for="hora_inicio"><strong>Dias de Atención</strong></label><br>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="checkbox" name="case[1]" value="1">
+                                  <label class="form-check-label" for="inlineCheckbox1">Lunes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="checkbox" name="case[2]" value="2">
+                                  <label class="form-check-label" for="inlineCheckbox2">Martes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="checkbox" name="case[3]" value="3">
+                                  <label class="form-check-label" for="inlineCheckbox3">Miercoles</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="checkbox" name="case[4]" value="4">
+                                  <label class="form-check-label" for="inlineCheckbox4">Jueves</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="checkbox" name="case[5]" value="5">
+                                  <label class="form-check-label" for="inlineCheckbox5">Viernes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="checkbox" id="todos">
+                                  <label class="form-check-label" for="inlineCheckbox5">todos</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label for="hora_inicio"><strong>Hora de Inicio de Atención</strong></label>
-                                <input id="hora_inicio" type="text" value="{{ old('hora_inicio') }}" class="form-control" name="hora_inicio" placeholder="00:00" required>
+                                <input id="hora_inicio" type="time" value="{{ old('hora_inicio') }}" class="form-control" name="hora_inicio" placeholder="00:00" required>
                             </div>
                             <div class="form-group">
                                 <label for="hora_fin"><strong>Hora de Cierre de Atención</strong></label>
-                                <input id="hora_fin" type="text" class="form-control" value="{{ old('hora_fin') }}" name="hora_fin" placeholder="00:00" required>
+                                <input id="hora_fin" type="time" class="form-control" value="{{ old('hora_fin') }}" name="hora_fin" placeholder="00:00" required>
                             </div>
                             <div class="form-group">
                                 <label for="min_turno"><strong>Minutos entre turnos</strong></label>
                                 <input id="min_turno" type="number" class="form-control" name="min_turno" value="{{ old('min_turno') }}" required>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-outline-primary btn-block"><h5><strong><i class="fas fa-plus"></i> Añadir Tramite</strong></h5></button>
+                                <button type="submit" class="btn btn-outline-primary btn-block title"><h5><strong><i class="fas fa-plus"></i> Añadir Tramite</strong></h5></button>
                             </div>
                         </form>  
 
                     </div>
 
-                    <div class="col">
+                    <div class="col-md-8 my-3">
+                        <h4 class="title"><strong>Listado de Tramites</strong></h4>
+                        <hr class="border-red">
                         @if(session('message'))
                             <div class="alert alert-{{ session('status') }}">
                                 <strong>{{ session('message') }}</strong>
@@ -60,8 +89,9 @@
                             <table class="table">
                                 <thead>
                                     <th>Denominación</th>
-                                    <th>Inicio Atención</th>
-                                    <th>Cierre Atención</th>
+                                    <th>Dias Atención</th>
+                                    <th>Inicio</th>
+                                    <th>Cierre</th>
                                     <th>Min. Turno</th>
                                     <th>Acciones</th>
                                 </thead>
@@ -69,8 +99,31 @@
                                     @foreach($oficina->config as $config)
                                     <tr>
                                         <td>{{$config->tramite->denominacion}}</td>
-                                        <td>{{$config->hora_inicio}}</td>
-                                        <td>{{$config->hora_fin}}</td>
+                                        <td>
+                                            @for($i=0; $i<5; $i++)
+                                                @if(isset($config->dias[$i]))
+                                                    @switch($config->dias[$i])
+                                                        @case(1)
+                                                            Lunes 
+                                                        @break
+                                                        @case(2)
+                                                             Martes 
+                                                        @break
+                                                        @case(3)
+                                                             Miercoles 
+                                                        @break
+                                                        @case(4)
+                                                             Jueves 
+                                                        @break
+                                                        @case(5)
+                                                             Viernes
+                                                        @break
+                                                    @endswitch
+                                                @endif
+                                            @endfor
+                                        </td>
+                                        <td>{{date('H:i', strtotime($config->hora_inicio))}}</td>
+                                        <td>{{date('H:i', strtotime($config->hora_fin))}}</td>
                                         <td>{{$config->min_turno}}</td>
                                         <td>
                                             <!--
@@ -116,11 +169,11 @@
                     </div>
                     <div class="form-group">
                         <label for="hora_inicio"><strong>Hora de Inicio de Atención</strong></label>
-                         <input id="ehora_inicio" type="text" value="{{ old('hora_inicio') }}" class="form-control" name="hora_inicio" placeholder="00:00" required>
+                         <input id="ehora_inicio" type="time" value="{{ old('hora_inicio') }}" class="form-control" name="hora_inicio" placeholder="00:00" required>
                     </div>
                     <div class="form-group">
                         <label for="hora_fin"><strong>Hora de Cierre de Atención</strong></label>
-                        <input id="ehora_fin" type="text" class="form-control" value="{{ old('hora_fin') }}" name="hora_fin" placeholder="00:00" required>
+                        <input id="ehora_fin" type="time" class="form-control" value="{{ old('hora_fin') }}" name="hora_fin" placeholder="00:00" required>
                     </div>
                     <div class="form-group">
                         <label for="min_turno"><strong>Minutos entre turnos</strong></label>

@@ -2,7 +2,7 @@
 
   <div class="card">
     <div class="card-header border border-danger list-group-item list-group-item-action list-group-item-secondary">
-        <h5 class="h5">
+        <h5>
           <a class="card-link text-danger" id="link" data-toggle="collapse" href="#constitucion">
               <strong><i class="fas fa-plus"></i> CONSTITUTCION</strong>
           </a>
@@ -20,7 +20,7 @@
 
   <div class="card">
     <div class="card-header border border-danger list-group-item list-group-item-action list-group-item-secondary">
-      <h5 class="h5">
+      <h5 class="">
         <a class="collapsed card-link text-danger" data-toggle="collapse" href="#asamblea">
           <strong><i class="fas fa-plus"></i> CONVOCATORIA ASAMBLEA</strong>
         </a>

@@ -4,14 +4,14 @@
 <div class="container my-5">
     <div class="row justify-content-center my-5" >
         <div class="col-md-10">
-            <div class="card border border-danger">
-                <div class="card-header grey text-white border-buton border-danger">
+            <div class="card border border-secondary">
+                <div class="card-header grey text-white border-buton border-secondary title">
                     <h3><strong>Tramites</strong></h3>
                  </div>
 
                 <div class="card-body justify-content-center row">                    
                     <div class="col-md-4 border-right border-danger">
-                        <h4 class="my-3"><strong>Agregar Tramite</strong></h4><hr class="border border-danger">
+                        <h4 class="my-3 title"><strong>Agregar Tramite</strong></h4><hr class="border-red">
                         
                         <form action="{{route('tramite.create')}}" method="POST">
                             @csrf
@@ -25,13 +25,15 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-outline-primary btn-block"><h5><strong><i class="fas fa-plus"></i> Agregar Tramite</strong></h5></button>
+                                <button type="submit" class="btn btn-outline-primary btn-block title"><h5><strong><i class="fas fa-plus"></i> Agregar Tramite</strong></h5></button>
                             </div>
                         </form>  
 
                     </div>
 
-                    <div class="col">
+                    <div class="col-md-8 my-3">
+                        <h4 class="title"><strong>Listado de Trmites</strong></h4>
+                        <hr class="border-red">
                         @if(session('message'))
                             <div class="alert alert-{{ session('status') }}">
                                 <strong>{{ session('message') }}</strong>
@@ -42,6 +44,7 @@
                             <table class="table">
                                 <thead>
                                     <th>Denominación</th>
+                                    <th>Estado</th>
                                     <th>Acciones</th>
                                 </thead>
                                 <tbody>
@@ -49,7 +52,14 @@
                                     <tr>
                                         <td>{{$tramite->denominacion}}</td>
                                         <td>
-                                            <a href="#" class="btn btn-outline-success" data-toggle="modal" data-target="#editModal" onclick="edit({{$tramite->id}}, '{{$tramite->denominacion}}')"><i class="fas fa-edit"></i></a>
+                                            @if($tramite->estado == 'Habilitado')
+                                            <h5><span class="badge badge-pill badge-success">Habilitado...</span></h5>
+                                            @else
+                                            <h5><span class="badge badge-pill badge-danger">DesHabilitado</span></h5>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="#" class="btn btn-outline-success" data-toggle="modal" data-target="#editModal" onclick="edit({{$tramite->id}}, '{{$tramite->denominacion}}', '{{$tramite->estado}}')"><i class="fas fa-edit"></i></a>
                                             <!--
                                             <a href="#" class="btn btn-outline-secondary" title="Configuracion"><i class="fas fa-cog"></i></a>
                                             -->
@@ -86,8 +96,15 @@
                     @csrf
                     <div class="form-group">
                         <label for="denominacion" class="col-form-label text-md-right"><strong>{{ __('Denominación') }}</strong></label>
-                        <input id="Edenominacion" type="text" class="form-control @error('denominacion') is-invalid @enderror" name="denominacion" value="{{ old('denominacion') }}" required>
-                        
+                        <input id="Edenominacion" type="text" class="form-control @error('denominacion') is-invalid @enderror" name="denominacion" value="{{ old('denominacion') }}" required>                        
+                    </div>
+                    <div class="form-group">
+                        <label for="estado" class="col-form-label text-md-right"><strong>{{ __('Estado') }}</strong></label>
+                        <select class="form-control" name="estado" id="estado">
+                            <option selected disabled>--Elegir Opción--</option>
+                            <option value="Habilitado">Habilitado</option>
+                            <option value="DesHabilitado">DesHabilitado</option>
+                        </select>                       
                     </div>
                     <input type="hidden" name="id" id="id">
                     <div class="form-group">

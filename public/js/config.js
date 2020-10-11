@@ -1,6 +1,9 @@
 window.addEventListener("load", function(){
 	
-
+	$("#todos").click(function(){
+		$(".form-check-input").attr("checked", this.checked);	
+	});
+	
 });
 
 function edit(oficina,config,tramite,inicio,fin,min){

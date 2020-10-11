@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Tramite;
+use App\Config;
 
 class TramitesController extends Controller
 {
@@ -30,7 +31,7 @@ class TramitesController extends Controller
 
 
     	$tramite->denominacion = strtoupper($request->input('denominacion'));
-    	
+    	$tramite->estado = 'Habilitado';
 		$tramite->save();
 
     	return redirect()->route('tramite.index')
@@ -43,6 +44,7 @@ class TramitesController extends Controller
     	$tramite = Tramite::find($id);
     	
     	$tramite->denominacion = strtoupper($request->input('denominacion'));
+        $tramite->estado = $request->input('estado');
     	$tramite->update();
 
     	return redirect()->route('tramite.index')
@@ -50,15 +52,25 @@ class TramitesController extends Controller
 
     }
 
+    public function habilitar(Request $request){
+        
+    }
+
     public function destroy(Request $request){
-    	
     	$id = $request->input('id');
-    	$name = $request->input('tramite');
-    	$tramite = Tramite::find($id);
-		$tramite->delete();
+        $name = $request->input('tramite');
+            
+        $config = Config::where('tramite_id',$id)->get();
 
-    	return redirect()->route('tramite.index')
+    	if (count($config) > 0) {
+            return redirect()->route('tramite.index')
+                         ->with(['message' => 'No se ha eliminado el tramite "'.$name .'" por que esta configurado para una oficina', 'status' => 'danger']);
+        }else{
+            $tramite = Tramite::find($id);
+            $tramite->delete();
+            return redirect()->route('tramite.index')
                          ->with(['message' => 'Se ha eliminado el tramite '.$name, 'status' => 'danger']);
-
+    
+        }
     }
 }

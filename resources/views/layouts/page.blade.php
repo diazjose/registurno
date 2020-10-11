@@ -80,9 +80,15 @@
                             <div class="d-flex justify-content-center">
                                 <div class="align-self-center my-2">
                                     <ul class="social-network social-circle">
-                                        <li><a href="https://www.facebook.com/SecretariaDeJusticiaLaRioja/" target="_block" class="icoFacebook" title="Facebook"><i class="fab fa-facebook"></i></a></li>
-                                        <li><a href="https://www.instagram.com/secjusticia_lr/" class="icoInstegram" title="Instegram" target="_block"><i class="fab fa-instagram"></i></a></li>
-                                        <li><a href="https://www.twitter.com/secjusticia_lr" class="icoLinkedin" title="Twiter" target="_block"><i class="fab fa-twitter"></i></a></li>
+                                        <li>
+                                            <a href="https://www.facebook.com/SecretariaDeJusticiaLaRioja/" target="_block" class="icoFacebook" title="Facebook"><h3><i class="fab fa-facebook"></i></h3></a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.instagram.com/secjusticia_lr/" class="icoInstegram" title="Instegram" target="_block"><h3><i class="fab fa-instagram"></i></h3></a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.twitter.com/secjusticia_lr" class="icoLinkedin" title="Twiter" target="_block"><h3><i class="fab fa-twitter"></i></h3></a>
+                                        </li>
                                         <!--
                                         <li><a href="#" class="icoYoutube" title="Youtube"><i class="fab fa-youtube"></i></a></li>
                                     -->

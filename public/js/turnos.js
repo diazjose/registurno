@@ -35,6 +35,8 @@ window.addEventListener("load", function(){
 		
 	});
 
+	var tipo = $("#fecha").text();
+
 	$("#tramite").change(function(){		
   		$("#btn").removeClass('disabled',false);
 	});

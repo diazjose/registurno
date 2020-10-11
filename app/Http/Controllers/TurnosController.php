@@ -13,7 +13,7 @@ class TurnosController extends Controller
 {
     public function index(){
         //$oficinas = Oficina::orderBy('denominacion')->get();
-        $tramites = Tramite::orderBy('denominacion')->get();
+        $tramites = Tramite::where('estado', 'Habilitado')->orderBy('denominacion')->get();
         return view('turnos.index',['tramites' => $tramites]);
     }
 
@@ -22,111 +22,20 @@ class TurnosController extends Controller
     }
 
     public function created(Request $request){
-    	    	
-    	$validate = $this->validate($request, [
-           'dni' => ['required', 'string','max:8'],
-           'tramite' => ['required', 'int', 'max:255'],
-        ]);
-        $dni = $request->input('dni');
-        $tramite = $request->input('tramite');
-        $date = date('Y-m-d');
-        
-        $turno = Turno::where('dni',$dni)->where('fecha','>', $date)->where('estado', 'Espera')->first();        
-        $confs = Config::where('tramite_id', $tramite)->get();
-        $count = count($confs);
-
-        if ($turno) {
-            $info[0] = $turno;
-            $info[1] = $turno->oficina->denominacion;
-            $info[2] = $turno->tramite->denominacion;
-            $info[3] = 'Usted ya tiene un turno';
-            $info[4] = 'dark';
-        }else{
-            if ($confs) {
-                $turno = new Turno;
-                $turno->tramite_id = $tramite;
-                $turno->dni = $dni;
-                $turno->estado = 'Espera';
-                $bandera = 0;
-                for ($i=0; $i < $count ; $i++) { 
-                    $tur = Turno::where('oficina_id',$confs[$i]->oficina_id)->where('tramite_id',$tramite)->orderBy('id','desc')->first();
-                    if ($tur) {
-                        $horac = strtotime($confs[$i]->hora_fin);
-                        $min_turno = $confs[$i]->min_turno;
-                        $hora = strtotime("+$min_turno minute", strtotime($tur->hora));
-                        if ($hora < $horac) {
-                            $turno->oficina_id = $confs[$i]->oficina_id;
-                            $turno->fecha = $tur->fecha;
-                            $hora = strtotime("+$min_turno minute", strtotime($tur->hora));
-                            $hora = date('H:i', $hora);
-                            $turno->hora = $hora;
-                            $turno->orden = $tur->orden + 1;
-                            break;
-                        }else{
-                            $u = $i;
-                           $count1 = $count-1;
-                           if ($u == $count1) {
-                                $date = date('d-m-Y', strtotime($tur->fecha."+ 1 days"));
-                                if(date('l', strtotime($date)) == 'Sunday' || date('l', strtotime($date)) == 'Saturday'){
-                                    $date = date('d-m-Y', strtotime($tur->fecha."+ 3 days"));
-                                }
-                                $turno->oficina_id = $confs[0]->oficina_id;
-                                $fecha = date('Y-m-d', strtotime($date));
-                                $turno->fecha = $fecha;
-                                $turno->orden = 1;
-                                $turno->hora = $confs[0]->hora_inicio;     
-                           }     
-                        }
-                    }else{
-                        if ($i == 0) {
-                            $date = date('Y-m-d');
-                            $date = date('d-m-Y', strtotime($date."+ 1 days"));
-                            if(date('l', strtotime($date)) == 'Sunday' || date('l', strtotime($date)) == 'Saturday'){
-                                    $date = date('d-m-Y', strtotime($date."+ 3 days"));
-                            }
-                            $turno->oficina_id = $confs[$i]->oficina_id;
-                            $fecha = date('Y-m-d', strtotime($date));
-                            $turno->fecha = $fecha;
-                            $turno->orden = 1;
-                            $turno->hora = $confs[$i]->hora_inicio;
-                            break;
-                        }else{
-                            $e = $i-1;
-                            $tur = Turno::where('oficina_id',$confs[$e]->oficina_id)->where('tramite_id',$tramite)->orderBy('id','desc')->first();
-                            $turno->oficina_id = $confs[$i]->oficina_id;
-                            $turno->fecha = $tur->fecha;
-                            $turno->orden = 1;
-                            $turno->hora = $confs[$i]->hora_inicio;
-                            break;
-                        }
-                        
-                    }     
-                }              
-            }
-            $info[0] = $turno;
-            $info[1] = $turno->oficina->denominacion;
-            $info[2] = $turno->tramite->denominacion;
-            $info[3] = 'Solicitud de turno confirmada';
-            $info[4] = 'success';
-            $turno->save();
-        }
-        return response()->json($info);
-        
-    }
-
-    public function create(Request $request){
                 
         $validate = $this->validate($request, [
            'dni' => ['required', 'string','max:8'],
+           'telefono' => ['required', 'string','max:11'],
            'ente' => ['required', 'string', 'max:255'],
            'tramite' => ['required', 'int', 'max:255'],
         ]);
         $dni = $request->input('dni');
+        $telefono = $request->input('telefono');
         $ente = $request->input('ente');
         $tramite = $request->input('tramite');
         $date = date('Y-m-d');
             
-        $turno = Turno::where('dni',$dni)->where('fecha','>', $date)->where('estado', 'Espera')->first();        
+        $turno = Turno::where('dni',$dni)->where('estado', 'Espera')->first();        
         $confs = Config::where('tramite_id', $tramite)->get();
         $count = count($confs);      
 
@@ -140,6 +49,118 @@ class TurnosController extends Controller
                 $turno = new Turno;
                 $turno->tramite_id = $tramite;
                 $turno->dni = $dni;
+                $turno->telefono = $telefono;
+                $turno->ente = $ente;
+                $turno->estado = 'Espera';
+                               
+                $tur = Turno::where('oficina_id',$confs[0]->oficina_id)->where('tramite_id',$tramite)->orderBy('id','desc')->first();
+                if ($tur) {
+                    $horac = strtotime($confs[0]->hora_fin);
+                    $min_turno = $confs[0]->min_turno;
+                    $horat = strtotime($tur->hora);
+                    $hora = strtotime("+$min_turno minute", $horat);       
+                    $datet = $tur->fecha;
+                    if ($datet > $date AND $horat < $horac AND $hora < $horac) {
+                        $turno->oficina_id = $confs[0]->oficina_id;
+                        $turno->fecha = $tur->fecha;
+                        $hora = strtotime("+$min_turno minute", strtotime($tur->hora));
+                        $hora = date('H:i', $hora);
+                        $turno->hora = $hora;
+                        $turno->orden = $tur->orden + 1;
+                    }else{
+                        $date = date('Y-m-d');
+                        if ($datet > $date) {
+                            $date = date('d-m-Y', strtotime($datet."+ 1 days"));    
+                        }else{
+                            $date = date('d-m-Y', strtotime($date."+ 1 days"));
+                        }                             
+                        $ban = 0;
+                        $co = strlen($confs[0]->dias);
+                        do {
+                            $d = gregoriantojd(date('m', strtotime($date)), date('d', strtotime($date)), date('Y', strtotime($date)));
+                            $val = jddayofweek($d, 0 );
+                            for ($e=0; $e < $co; $e++) { 
+                                if ($confs[0]->dias[$e] == $val) {
+                                    $ban = 1;
+                                }    
+                            }
+                            if ($ban == 0) {
+                                $date = date('d-m-Y', strtotime($date."+ 1 days"));
+                            }
+                        } while ($ban == 0);
+
+                        $turno->oficina_id = $confs[0]->oficina_id;
+                        $fecha = date('Y-m-d', strtotime($date));
+                        $turno->fecha = $fecha;
+                        $turno->orden = 1;
+                        $turno->hora = $confs[0]->hora_inicio;     
+                    }
+                }else{
+                    $date = date('Y-m-d');
+                    $date = date('d-m-Y', strtotime($date."+ 1 days"));
+                    $ban = 0;
+                    $co = strlen($confs[0]->dias);
+                    do {
+                        $d = gregoriantojd(date('m', strtotime($date)), date('d', strtotime($date)), date('Y', strtotime($date)));
+                        $val = jddayofweek($d, 0 );
+                        for ($e=0; $e < $co; $e++) { 
+                            if ($confs[0]->dias[$e] == $val) {
+                                $ban = 1;
+                            }    
+                        }
+                        if ($ban == 0) {
+                            $date = date('d-m-Y', strtotime($date."+ 1 days"));
+                        }
+                    } while ($ban == 0);
+                    $turno->oficina_id = $confs[0]->oficina_id;
+                    $fecha = date('Y-m-d', strtotime($date));
+                    $turno->fecha = $fecha;
+                    $turno->orden = 1;
+                    $turno->hora = $confs[0]->hora_inicio;
+                }
+            }       
+            
+            $turno->save();
+            $info[0] = $turno;
+            $info[2] = $turno->tramite->denominacion;
+            $info[3] = 'Solicitud de turno confirmada';
+            $info[4] = 'success';                
+        }
+
+        return response()->json($info);
+        
+    }
+
+    public function create(Request $request){
+                
+        $validate = $this->validate($request, [
+           'dni' => ['required', 'string','max:8'],
+           'telefono' => ['required', 'string','max:11'],
+           'ente' => ['required', 'string', 'max:255'],
+           'tramite' => ['required', 'int', 'max:255'],
+        ]);
+        $dni = $request->input('dni');
+        $telefono = $request->input('telefono');
+        $ente = $request->input('ente');
+        $tramite = $request->input('tramite');
+        $date = date('Y-m-d');
+            
+        //$turno = Turno::where('dni',$dni)->where('fecha','>', $date)->where('estado', 'Espera')->first();        
+        $turno = Turno::where('dni',$dni)->where('estado', 'Espera')->first();        
+        $confs = Config::where('tramite_id', $tramite)->get();
+        $count = count($confs);      
+
+        if ($turno) {
+            $info[0] = $turno;
+            $info[2] = $turno->tramite->denominacion;
+            $info[3] = 'Usted ya tiene un turno';
+            $info[4] = 'danger';
+        }else{
+            if ($confs) {
+                $turno = new Turno;
+                $turno->tramite_id = $tramite;
+                $turno->dni = $dni;
+                $turno->telefono = $telefono;
                 $turno->ente = $ente;
                 $turno->estado = 'Espera';
                 $bandera = 0;
@@ -161,26 +182,48 @@ class TurnosController extends Controller
                             break;
                         }else{
                             $u = $i;
-                           $count1 = $count-1;
-                           if ($u == $count1) {
+                            $count1 = $count-1;
+                            if ($u == $count1) {
                                 $date = date('d-m-Y', strtotime($tur->fecha."+ 1 days"));
-                                if(date('l', strtotime($date)) == 'Sunday' || date('l', strtotime($date)) == 'Saturday'){
-                                    $date = date('d-m-Y', strtotime($tur->fecha."+ 3 days"));
-                                }
+                                $co = strlen($conf[$i]->dias);
+                                $ban = 0;
+                                do {
+                                    $d = gregoriantojd(date('m', strtotime($date)), date('d', strtotime($date)), date('Y', strtotime($date)));
+                                    $val = jddayofweek($d, 0 );
+                                    for ($e=0; $e < $co; $e++) { 
+                                        if ($confs[0]->dias[$e] == $val) {
+                                            $ban = 1;
+                                        }    
+                                    }
+                                    if($ban == 0){
+                                        $date = date('d-m-Y', strtotime($date."+ 1 days"));
+                                    }
+                                } while ($ban == 1);
                                 $turno->oficina_id = $confs[0]->oficina_id;
                                 $fecha = date('Y-m-d', strtotime($date));
                                 $turno->fecha = $fecha;
                                 $turno->orden = 1;
                                 $turno->hora = $confs[0]->hora_inicio;     
-                           }     
+                            }     
                         }
                     }else{
                         if ($i == 0) {
                             $date = date('Y-m-d');
                             $date = date('d-m-Y', strtotime($date."+ 1 days"));
-                            if(date('l', strtotime($date)) == 'Sunday' || date('l', strtotime($date)) == 'Saturday'){
-                                    $date = date('d-m-Y', strtotime($date."+ 3 days"));
-                            }
+                            $co = strlen($confs[$i]->dias);
+                            $ban = 0;
+                            do {
+                                $d = gregoriantojd(date('m', strtotime($date)), date('d', strtotime($date)), date('Y', strtotime($date)));
+                                $val = jddayofweek($d, 0 );
+                                for ($e=0; $e < $co; $e++) { 
+                                    if ($confs[$i]->dias[$e] == $val) {
+                                        $ban = 1;
+                                    }    
+                                }
+                                if($ban == 0){
+                                    $date = date('d-m-Y', strtotime($date."+ 1 days"));
+                                }
+                            } while ($ban == 1);
                             $turno->oficina_id = $confs[$i]->oficina_id;
                             $fecha = date('Y-m-d', strtotime($date));
                             $turno->fecha = $fecha;
@@ -190,11 +233,22 @@ class TurnosController extends Controller
                         }else{
                             $e = $i-1;
                             $tur = Turno::where('oficina_id',$confs[$e]->oficina_id)->where('tramite_id',$tramite)->orderBy('id','desc')->first();
-                            $turno->oficina_id = $confs[$i]->oficina_id;
-                            $turno->fecha = $tur->fecha;
-                            $turno->orden = 1;
-                            $turno->hora = $confs[$i]->hora_inicio;
-                            break;
+
+                            $d = gregoriantojd(date('m', strtotime($tur->fecha)), date('d', strtotime($tur->fecha)), date('Y', strtotime($tur->fecha)));
+                            $val = jddayofweek($d, 0 );
+                            $ban = 0;
+                            for ($u=0; $u < $co; $u++) { 
+                                if ($confs[$i]->dias[$u] == $val) {
+                                    $ban = 1;
+                                }    
+                            }
+                            if($ban == 1){                                
+                                $turno->oficina_id = $confs[$i]->oficina_id;
+                                $turno->fecha = $tur->fecha;
+                                $turno->orden = 1;
+                                $turno->hora = $confs[$i]->hora_inicio;
+                                break;
+                            }                            
                         }
                         
                     }     
@@ -283,21 +337,21 @@ class TurnosController extends Controller
         return response()->json($info);
     }    
 
-	public function searchTurno(Request $request){
+    public function searchTurno(Request $request){
 
-		$dni = $request->input('dni');
+        $dni = $request->input('dni');
         $date = date('Y-m-d');
 
-		$turno = Turno::where('dni',$dni)->where('fecha','>', $date)->where('estado', 'Espera')->first();
-		
+        $turno = Turno::where('dni',$dni)->where('fecha','>', $date)->where('estado', 'Espera')->first();
+        
         if ($turno) {
             $message = 1;
         }else{
             $message = 0;
         }
 
-		return response()->json($message);
-	}
+        return response()->json($message);
+    }
 
     public function view($fecha=''){
         $role = Auth::user()->role;

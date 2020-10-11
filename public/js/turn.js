@@ -15,6 +15,10 @@ window.addEventListener("load", function(){
 	    validDNI();
 	});
 
+	$('#telefono').keyup(function () { 
+	    this.value = this.value.replace(/[^0-9]/g,'');	    
+	});
+
 	$("#oficina").change(function(){
 		var buscar = $(this).val();
 		var form = $("#form-search");
@@ -58,16 +62,17 @@ window.addEventListener("load", function(){
 	$("#btn").click(function(){
 		
 		var vdni = $("#dni").val();
+		var vtel = $("#telefono").val();
 		var vtramite = $("#tramite").val();
 		var ente = $("#ente").val();
 
-		if (vdni != '' && vtramite != '' && ente != '') {
+		if (vdni != '' && vtramite != '' && ente != '' && vtel != '') {
 			$("#turno-solicitud").hide();
 			if ($("#btn").hasClass("disabled") == false) {
 				var form = $("#form-turno");
 				var data = form.serialize();
 				$.ajax({          
-			        url: 'turno/create',
+			        url: 'turno/created',
 			        type: 'POST',
 			        data : data,
 			        beforeSend: function(objeto){
@@ -92,7 +97,11 @@ window.addEventListener("load", function(){
 				        	$("#btn").addClass('disabled');
 				        	$("#btn-descargar").attr('href','turno/download/'+data[0].id+'/'+data[0].orden);
 				        	$("#btn-descargar").attr('target','_block');
-				        }, 2000); 
+				        	
+				        	$("#dni").val('');
+				        	$("#telefono").val('');
+				        	$("#ente").val('');
+				        }, 2000);
 			        }
 			    });
 			}else{
@@ -102,7 +111,7 @@ window.addEventListener("load", function(){
 	        	$("#exampleModal").modal();
 			}    
 		}else{
-			$("#message").text('Debe completar todos los campos');
+			$("#message").text('* Debe completar todos los campos');
 	        $("#exampleModal").modal();
 		}   
 	});

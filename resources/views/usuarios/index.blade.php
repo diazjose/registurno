@@ -4,12 +4,12 @@
 <div class="container" id="contenedor">
     <div class="row justify-content-center">
         <div class="col">
-            <div class="card">
-                <div class="card-header grey text-white"><h3><strong><i class="fas fa-users"></i> Usuarios</strong></h3></div>
+            <div class="card border-secondary">
+                <div class="card-header grey text-white title"><h3><strong><i class="fas fa-users"></i> Usuarios</strong></h3></div>
 
                 <div class="card-body justify-content-center row">
                     <div class="col-md-4 border-right border-danger">
-                        <h4 class="my-3"><strong>Agregar Usuario</strong></h4><hr class="border border-danger">
+                        <h4 class="my-3 title"><strong>Agregar Usuario</strong></h4><hr class="border-red">
                         
                         <form method="POST" action="{{ route('user.create') }}">
                             @csrf
@@ -102,7 +102,7 @@
                             </div>
 
                             <div class="form-group">
-                                <button type="submit" class="btn btn-outline-primary btn-block">
+                                <button type="submit" class="btn btn-outline-primary btn-block title">
                                     <strong>{{ __('Registrar') }}</strong>
                                 </button>
                             </div>
@@ -110,7 +110,8 @@
                     </div>
                     <div class="col-md-8 my-3">
                         
-                        <h4><strong>Listado de Usuarios</strong></h4>
+                        <h4 class="title"><strong>Listado de Usuarios</strong></h4>
+                        <hr class="border-red">
                         @if(session('message'))
                         <div class="alert alert-{{ session('status') }}">
                             <strong>{{ session('message') }}</strong>   

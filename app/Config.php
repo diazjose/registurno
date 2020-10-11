@@ -9,7 +9,7 @@ class Config extends Model
     protected $table = 'config';
 
     protected $fillable = [
-        'oficina_id', 'tramite_id', 'hora_inicio', 'hora_fin', 'min_turno'
+        'oficina_id', 'tramite_id', 'dias', 'hora_inicio', 'hora_fin', 'min_turno'
     ];
 
     public function oficina(){

@@ -2,7 +2,7 @@
 
   <div class="card">
     <div class="card-header border border-danger list-group-item list-group-item-action list-group-item-secondary">
-        <h5 class="h5">
+        <h5 class="">
           <a class="card-link text-danger" id="link" data-toggle="collapse" href="#collapseOne">
               <strong><i class="fas fa-plus"></i> CONSTITUTCION</strong>
           </a>
@@ -42,7 +42,7 @@
 
   <div class="card">
     <div class="card-header border border-danger list-group-item list-group-item-action list-group-item-secondary">
-      <h5 class="h5">
+      <h5 class="">
         <a class="collapsed card-link text-danger" data-toggle="collapse" href="#collapseTwo">
           <strong><i class="fas fa-plus"></i> MANUALES PARA ASOCIACIONES CIVILES</strong>
         </a>
@@ -69,7 +69,7 @@
 
   <div class="card">
     <div class="card-header border border-danger list-group-item list-group-item-action list-group-item-secondary">
-      <h5 class="h5">
+      <h5 class="">
         <a class="collapsed card-link text-danger" data-toggle="collapse" href="#collapseThree">
           <strong><i class="fas fa-plus"></i> RUBRICAS DE LIBROS</strong>
         </a>
@@ -93,7 +93,7 @@
 
   <div class="card">
     <div class="card-header border border-danger list-group-item list-group-item-action list-group-item-secondary">
-      <h5 class="h5">
+      <h5 class="">
         <a class="collapsed card-link text-danger" data-toggle="collapse" href="#quinto">
           <strong><i class="fas fa-plus"></i> REFORMAS DE ESTATUTOS SOCIAL</strong>
         </a>
@@ -144,7 +144,7 @@
 
   <div class="card">
     <div class="card-header border border-danger list-group-item list-group-item-action list-group-item-secondary">
-      <h5 class="h5">
+      <h5 class="">
         <a class="collapsed card-link text-danger" data-toggle="collapse" href="#sexto">
           <strong><i class="fas fa-plus"></i> CERTIFICADOS DE VIGENCIA</strong>
         </a>
@@ -179,10 +179,10 @@
       </div>
     </div>
   </div>
-
+<!--
   <div class="card">
     <div class="card-header border border-danger list-group-item list-group-item-action list-group-item-secondary">
-      <h5 class="h5">
+      <h5 class="">
         <a class="collapsed card-link text-danger" data-toggle="collapse" href="#septimo">
           <strong><i class="fas fa-plus"></i> DOCUMENTACION ANUAL OBLIGATORIA</strong>
         </a>
@@ -197,7 +197,7 @@
 
   <div class="card">
     <div class="card-header border border-danger list-group-item list-group-item-action list-group-item-secondary">
-      <h5 class="h5">
+      <h5 class="">
         <a class="collapsed card-link text-danger" data-toggle="collapse" href="#octavo">
           <strong><i class="fas fa-plus"></i> NORMALIZACIONES</strong>
         </a>
@@ -209,7 +209,7 @@
       </div>
     </div>
   </div>
- <!--
+ 
   <div class="card">
     <div class="card-header border border-danger list-group-item list-group-item-action list-group-item-secondary">
       <h5 class="h5">
