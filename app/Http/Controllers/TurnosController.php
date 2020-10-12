@@ -475,6 +475,7 @@ CONSTRAINT pk_oficinas PRIMARY KEY(id)
 create table tramites(
 id int(255) auto_increment not null,
 denominacion varchar(255),
+estado varchar(100),
 created_at datetime,
 updated_at datetime,
 CONSTRAINT pk_tramites PRIMARY KEY(id)    
