@@ -22,6 +22,7 @@
                                     <a href="#" id="fechaTurno" class="mx-md-2 btn btn-primary btn-md-block"><strong><i class="fas fa-search"></i> Buscar</strong></a>
                                 </div>
                             </form>
+                            <input type="hidden" id="date" value="@if($fecha != ''){{ $fecha }}@else{{ date('Y-m-d')}}@endif" >
                             <div class="col-md-4">
                                 <a href="#" id="pdf" target="_black" class="btn btn-outline-dark title"><strong><i class="fas fa-file-pdf"></i> Exportar a PDF</strong></a>
                             </div>   

@@ -64,3 +64,4 @@ Route::get('/seguir-legajo', 'TurnosController@seguimiento')->name('seg.index');
 
 /*REPORTES*/
 Route::get('/turno/download/{id}/{fecha}', 'PdfController@turno')->name('turno');
+Route::get('/turnos/download/{fecha}', 'PdfController@viewTurnos')->name('turnosPfd');

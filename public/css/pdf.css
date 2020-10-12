@@ -1,0 +1,83 @@
+/*
+@font-face {
+    font-family: Antenna-regular;
+    font-style: normal;
+    src: url('../font-gob/antenna/ANTENNACOND-REGULAR.TTF') 
+}
+
+@font-face {
+    font-family: Gotham-bold;
+    font-style: normal;
+    src: url('../font-gob/Gotham-Font/Gotham-Bold.otf') 
+}
+*/
+body {
+  /*
+  background-color: #FFE7E2;
+  */
+  background-color: #FFFFFF;
+  font-family: Antenna-regular;
+}
+
+header {
+	height: 87px;
+	background-color: #f01f33; 
+}
+
+.container{
+    text-align:center
+    margin: 1px;
+  	padding: 1px;
+}
+
+.text-center{
+	text-align:center;
+}
+.left{
+    float: left;
+    /*
+    border: 1px solid #FFFFFF;
+	*/
+}
+
+.text-white{
+	color: #FFFFFF;
+}
+
+#title-header{
+	font-size: 23px;
+  	line-height: 58px;
+}
+
+#sub {
+	font-size: 17px;
+}
+
+.title{
+  font-family: Gotham-bold;
+  text-align:center;
+}
+
+#logo{
+	width: 260px;
+	height: 84px;
+	border-right: 3px solid #FFFFFF;
+}
+
+table{
+	width:100%;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+}
+th {
+  text-align: left;
+}
+td {
+	font-size: 12px;
+}

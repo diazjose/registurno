@@ -35,8 +35,14 @@ window.addEventListener("load", function(){
 		
 	});
 
-	var tipo = $("#fecha").text();
-
+	
+	$("#pdf").click(function(){
+		var date = $("#date").val();
+		console.log(date);		
+		var url = 'http://localhost/sisturnos/public/turnos/download/'+date;
+		$(location).attr('href',url);
+	});
+	
 	$("#tramite").change(function(){		
   		$("#btn").removeClass('disabled',false);
 	});
