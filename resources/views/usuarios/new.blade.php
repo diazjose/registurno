@@ -5,8 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h4><strong>{{ __('Actualizar Usuario') }}</strong></h4>
+                <div class="card-header grey border-buton border-secondary text-white">
+                    <h4 class="title"><strong>{{ __('Actualizar Usuario') }}</strong></h4>
                 </div>
 
                 <div class="card-body">
@@ -85,11 +85,9 @@
 
                         
                         <div class="form-group">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <strong>{{ __('Actualizar Usuario') }}</strong>
-                                </button>
-                            </div>
+                            <button type="submit" class="btn btn-outline-success btn-block title btn-lg">
+                                <strong>{{ __('Actualizar Usuario') }}</strong>
+                            </button>
                         </div>
                     </form>
                 </div>

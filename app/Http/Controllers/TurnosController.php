@@ -438,6 +438,11 @@ class TurnosController extends Controller
         
     }
 
+    public function viewScreen(){
+        $turnos = Turno::where('estado','Llamado')->orWhere('estado','Atendido')->get();
+        return view('turnos.screen', ['turnos' => $turnos]);
+    }
+
     /*----------------PAGE-----------------*/
 
     public function seguimiento(){
@@ -453,8 +458,10 @@ name varchar(255),
 surname varchar(255),
 email varchar(100),
 password varchar(100),
+role varchar(50),
 oficina_id int(255),
 tramite_id int(255),
+box varchar(10),
 created_at datetime,
 updated_at datetime,
 remember_token varchar(255),
@@ -475,6 +482,7 @@ CONSTRAINT pk_oficinas PRIMARY KEY(id)
 create table tramites(
 id int(255) auto_increment not null,
 denominacion varchar(255),
+codigo varchar(100);
 estado varchar(100),
 created_at datetime,
 updated_at datetime,
@@ -486,6 +494,7 @@ create table config(
 id int(255) auto_increment not null,
 oficina_id int(255),
 tramite_id int(255),
+dias varchar(10),
 hora_inicio time,
 hora_fin time,
 min_turno int(10),
@@ -501,6 +510,7 @@ id int(255) auto_increment not null,
 oficina_id int(255),
 tramite_id int(255),
 dni varchar(10),
+telefono varchar(100),
 ente varchar(255),
 fecha date,
 hora time,
@@ -523,6 +533,18 @@ CONSTRAINT pk_permisos PRIMARY KEY(id),
 CONSTRAINT fk_permisos_user FOREIGN KEY(user_id) REFERENCES users(id),    
 CONSTRAINT fk_permisos_oficina FOREIGN KEY(oficina_id) REFERENCES oficinas(id),    
 CONSTRAINT fk_premisos_tramite FOREIGN KEY(tramite_id) REFERENCES tramites(id)
+)ENGINE=InnoDB;
+
+create table llamados(
+id int(255) auto_increment not null,
+user_id int(255),
+turno_id int(255),
+estado varchar(10),
+created_at datetime,
+updated_at datetime,
+CONSTRAINT pk_llamados PRIMARY KEY(id),
+CONSTRAINT fk_llamados_user FOREIGN KEY(user_id) REFERENCES users(id),
+CONSTRAINT fk_llamados_turno FOREIGN KEY(turno_id) REFERENCES turnos(id)
 )ENGINE=InnoDB;
 
 INSERT INTO users ('name', 'surname', 'email', 'password', 'role', 'created_at', 'updated_at') VALUES ('JOSE', 'DIAZ', 'diazjose481@gmail.com', '$2y$10$gvCpKnc8gw7J5iSOHYFXDO1GhL3U/LmluNmNSe3m6lSkr9BX2UeYG', 'ADMIN', '2020-07-21', '2020-07-21');

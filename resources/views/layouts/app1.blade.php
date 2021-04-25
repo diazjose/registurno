@@ -68,10 +68,25 @@
                                                 <h5 class="h5"><i class="fas fa-folder-minus"></i> Tramites</h5>
                                             </a>
                                         </li>
+                                        <!--
                                         <li class="nav-item">
                                             <a class="nav-link text-white" href="{{ route('turno.view') }}">
                                                 <h5 class="h5"><i class="far fa-calendar-alt"></i> Turnos</h5>
                                             </a>
+                                        </li>
+                                    -->
+                                        <li class="nav-item dropdown">
+                                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-white h5" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                                Turnos<span class="caret"></span>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                                <a class="dropdown-item" href="{{ route('turno.view') }}">
+                                                    <strong>{{ __('Ver') }}</strong>
+                                                </a>
+                                                <a class="dropdown-item" href="{{ route('turno.screen') }}">
+                                                    <strong>{{ __('Mostrar en Pantalla') }}</strong>
+                                                </a>
+                                            </div>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link text-white" href="{{ route('user.index') }}">

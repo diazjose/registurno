@@ -57,6 +57,7 @@ Route::post('/turno/search', 'TurnosController@search')->name('turno.buscar');
 Route::post('/turno/searchTurno', 'TurnosController@searchTurno')->name('turno.searchTurno');
 Route::get('/turno/todos/{fecha?}', 'TurnosController@view')->name('turno.view')->middleware('auth');
 Route::post('/turno/estado', 'TurnosController@status')->name('turno.status')->middleware('auth');
+Route::get('/turno/pantalla', 'TurnosController@viewScreen')->name('turno.screen')->middleware('auth');
 
 /*PAGE*/
 Route::get('/seguir-legajo', 'TurnosController@seguimiento')->name('seg.index');
